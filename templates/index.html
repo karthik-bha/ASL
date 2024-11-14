@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASL Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>American Sign Language Recognition</h1>
+            <p>Explore and learn ASL signs with our interactive recognition tool.</p>
+        </div>
+    </header>
+
+    <div class="container-wrapper">
+        <div class="info-container">
+            <div class="info-section">
+                <p>The American Sign Language (ASL) is the primary language used by deaf individuals in North America.
+                    It is a visual language that uses a combination of hand gestures, facial expressions, and body
+                    movements to convey meaning.</p>
+            </div>
+            <div class="image-section">
+                <p>Take a look at American Sign Language through the picture below, it contains the alphabets from A-Z, and
+                    additionally 3 symbols for space, del, nothing in which J, Z are movements</p>
+                <img src="https://www.dictionary.com/e/wp-content/uploads/2018/01/american_sign_language4-790x310.jpg"
+                    alt="ASL image">
+            </div>
+        </div>
+
+        <div class="predict-container">
+            <h3>Confused with ASL?  Use our Deep Learning tool to predict ASL signs in real time!</h3>
+            <a href="/upload">Upload Manually</a>
+            <button type="button" id="start-button" onclick="startVideo()">Start Live Prediction</button>
+            <video id="video" width="320" height="240" autoplay></video>
+            <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
+
+            <div id="result">Prediction: <span id="prediction-text">None</span></div>
+        </div>
+    </div>
+
+    <script src="{{url_for('static',filename='script.js')}}"></script>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const predictionText = document.getElementById('prediction-text');
+        const context = canvas.getContext('2d');
+
+        // Access webcam
+        function startVideo() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then((stream) => {
+                    video.srcObject = stream;
+                })
+                .catch((err) => {
+                    console.error('Error accessing webcam:', err);
+                });
+
+            // Start capturing frames every second
+            setInterval(captureFrame, 1000);
+        }
+
+        function captureFrame() {
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Convert frame to blob and send to server
+            canvas.toBlob((blob) => {
+                const formData = new FormData();
+                formData.append('file', blob, 'frame.jpg');
+
+                fetch('/predict', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    predictionText.innerText = data.prediction;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }, 'image/jpeg');
+        }
+    </script>
+</body>
+
+</html>
