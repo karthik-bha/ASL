@@ -8,15 +8,13 @@ import os
 app = Flask(__name__)
 
 # Load your model
-model = load_model('best_model_weights.keras', compile=False)  # Update with your actual path
+model = load_model('best_model_weights.keras', compile=False)  #path
 
 # Define the allowed extensions for file uploads
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg','mp4'}
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-# Your existing Python code
 
 import cv2
 
@@ -55,7 +53,6 @@ def predict_image(file_path):
 
     print('Predicted class:', predicted_class)
     return predicted_class
-
 
 @app.route('/')
 def index():

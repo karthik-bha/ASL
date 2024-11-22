@@ -201,4 +201,3 @@ function predict(event) {
         console.error('No file(s) found in the FormData.');
     }
 }
-

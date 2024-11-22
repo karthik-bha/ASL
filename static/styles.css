@@ -1,3 +1,4 @@
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #F1EAFF;
@@ -6,20 +7,20 @@ body {
 }
 
 header {
-    margin: 10px;
-    position: relative;
+    color: white;
+    background-color: black;
+    display: flex;
     text-align: center;
-    color: #872341;
-    background-color: #FFE3BB;
-    padding: 50px; 
+    justify-content: center;
+   
+
 }
 
-.header-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.header-content h1{
+    text-align: center;
 }
+
+
 
 .container-wrapper {
     display: flex;
@@ -27,11 +28,11 @@ header {
     max-width: 1300px;
     margin: 5px auto;
 }
-        
+
 .info-container {
     max-width: 800px;
     margin: 20px auto;
-    margin-right:40px;
+    margin-right: 40px;
     text-align: center;
     padding: 20px;
     background-color: #fff;
@@ -40,19 +41,27 @@ header {
 }
 
 .predict-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
     max-width: 400px;
-    margin: 20px auto;
+    margin: auto;
     padding: 20px;
     text-align: center;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    max-height: 800px; 
+    max-height: 800px;
     overflow-y: auto;
+    height: 100%;
 }
 
-.image-section{
+.image-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     background-color: #3478db;
     color: #fff;
     padding: 20px;
@@ -61,7 +70,7 @@ header {
 }
 
 .info-section {
-    background-color: #3498db;
+    background-color: #3478db;
     color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -77,17 +86,17 @@ header {
 }
 
 #upload-label {
-    background-color: #3498db;
+    background-color: #3478db;
     color: #fff;
     padding: 15px 30px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .upload-label {
-    background-color: #3498db;
+    background-color: #3478db;
     color: #fff;
     padding: 15px 30px;
     border-radius: 5px;
@@ -115,7 +124,7 @@ header {
 }
 
 #video-button,
-#files-button{
+#files-button {
     background-color: #3498db;
     color: #fff;
     padding: 15px 30px;
@@ -127,18 +136,15 @@ header {
 }
 
 #predict-button {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+ 
+
     background-color: #e67e22;
     color: #fff;
     padding: 15px 30px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top:10px;
+
 }
 
 #upload-button:hover,
@@ -146,14 +152,15 @@ header {
     background-color: #d35400;
 }
 
-#result {
+/* #result {
     position: absolute;
-    bottom:1px; 
+    bottom: 1px;
     width: 100%;
     font-weight: bold;
     text-align: center;
     color: #333;
-}
+} */
+
 #image-preview {
     margin: 20px auto;
     display: flex;
@@ -161,6 +168,7 @@ header {
     flex-wrap: wrap;
     position: relative;
 }
+
 .flex-container {
     display: flex;
 }
@@ -189,4 +197,40 @@ header {
 
 .upload-label {
     margin-top: 10px;
+}
+
+#live-predict{
+    text-align: center;
+    background-color: #e67e22;
+    padding: 15px 30px;
+    border-radius: 5px;
+    color: #fff;
+    max-width: 200px;
+    width: 100%;
+}
+
+#live-predict:hover{
+    color: black;
+}
+
+
+#manual-redirect{
+    text-align: center;
+    background-color: #3478db;
+    padding: 15px 30px;
+    border-radius: 5px;
+    color: #fff;
+    max-width: 200px;
+    width: 100%;
+}
+
+#manual-redirect:hover{
+    color: black;
+}
+
+#video{
+    padding: 10px;
+}
+#prediction-text{
+   font-weight: bold;
 }

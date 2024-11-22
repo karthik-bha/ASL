@@ -25,7 +25,7 @@
             </div>
             <div class="image-section">
                 <p>Take a look at American Sign Language through the picture below, it contains the alphabets from A-Z, and
-                    additionally 3 symbols for space, del, nothing in which J, Z are movements</p>
+                    additionally 3 symbols for space, del, nothing in which J, Z are movements </p>
                 <img src="https://www.dictionary.com/e/wp-content/uploads/2018/01/american_sign_language4-790x310.jpg"
                     alt="ASL image">
             </div>
@@ -33,12 +33,13 @@
 
         <div class="predict-container">
             <h3>Confused with ASL?  Use our Deep Learning tool to predict ASL signs in real time!</h3>
-            <a href="/upload">Upload Manually</a>
-            <button type="button" id="start-button" onclick="startVideo()">Start Live Prediction</button>
+            <!-- <a href="/upload">Upload Manually</a> -->
+             <button onclick="window.location.href='/upload'" id="manual-redirect">Upload Manually</button>
+            <button type="button"  onclick="startVideo()" id="live-predict">Start Live Prediction</button>
             <video id="video" width="320" height="240" autoplay></video>
             <canvas id="canvas" width="320" height="240" style="display: none;"></canvas>
 
-            <div id="result">Prediction: <span id="prediction-text">None</span></div>
+            <div id="result">Prediction: <span id="prediction-text" style="font: bold;">None</span></div>
         </div>
     </div>
 
